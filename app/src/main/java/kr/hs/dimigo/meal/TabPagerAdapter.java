@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
+    DateCal dateCal = new DateCal();
 
     public TabPagerAdapter(FragmentManager fm, int tabCount) {
         super(fm);
@@ -15,7 +16,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
         switch (position) {
             case 0:
                 YesterdayFragment yesterdayFragment = new YesterdayFragment();
