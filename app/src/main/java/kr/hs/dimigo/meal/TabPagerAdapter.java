@@ -4,10 +4,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import kr.hs.dimigo.meal.ListViewFragment;
+import kr.hs.dimigo.meal.TomorrowFragment;
+import kr.hs.dimigo.meal.YesterdayFragment;
+
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
     private int tabCount;
-    DateCal dateCal = new DateCal();
 
     public TabPagerAdapter(FragmentManager fm, int tabCount) {
         super(fm);
@@ -21,8 +24,9 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
                 YesterdayFragment yesterdayFragment = new YesterdayFragment();
                 return yesterdayFragment;
             case 1:
-                TodayFragment todayFragment = new TodayFragment();
-                return todayFragment;
+                ListViewFragment listViewFragment = new ListViewFragment();
+                return  listViewFragment;
+
             case 2:
                 TomorrowFragment tomorrowFragment = new TomorrowFragment();
                 return tomorrowFragment;

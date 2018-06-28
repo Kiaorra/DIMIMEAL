@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import kr.hs.dimigo.meal.DateCal;
 import kr.hs.dimigo.meal.parsing.MealPojo;
@@ -16,21 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TodayFragment extends Fragment{
-
-    TextView textBreakfast;
-    TextView textLunch;
-    TextView textDinner;
-    TextView textSnack;
+public class ListViewFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        textBreakfast = getActivity().findViewById(R.id.textBreakfast);
-        textLunch = getActivity().findViewById(R.id.textLunch);
-        textDinner = getActivity().findViewById(R.id.textDinner);
-        textSnack = getActivity().findViewById(R.id.textSnack);
 
         DateCal dateCal = new DateCal();
 
@@ -38,10 +27,7 @@ public class TodayFragment extends Fragment{
             @Override
             public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
                 if(response.body() != null) {
-                    textBreakfast.setText(response.body().getBreakfast());
-                    textLunch.setText(response.body().getLunch());
-                    textDinner.setText(response.body().getDinner());
-                    textSnack.setText(response.body().getSnack());
+
                 }
             }
 
@@ -50,11 +36,11 @@ public class TodayFragment extends Fragment{
 
             }
         });
-
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.today_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.listview_fragment, container, false);
     }
 }

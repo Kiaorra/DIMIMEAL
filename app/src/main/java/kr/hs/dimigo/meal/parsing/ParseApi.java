@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal;
+package kr.hs.dimigo.meal.parsing;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
