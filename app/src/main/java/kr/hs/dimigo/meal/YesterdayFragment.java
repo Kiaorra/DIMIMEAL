@@ -8,8 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.DateCal;
-import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.parsing.MealPojo;
 import kr.hs.dimigo.meal.parsing.ParseApi;
 import retrofit2.Call;
@@ -32,9 +30,9 @@ public class YesterdayFragment extends Fragment{
         textDinner = getActivity().findViewById(R.id.textDinner);
         textSnack = getActivity().findViewById(R.id.textSnack);
 
-        DateCal dateCal = new DateCal();
+        CalDate calDate = new CalDate();
 
-        ParseApi.apiService.getMealInfo(dateCal.getYesterday()).enqueue(new Callback<MealPojo>() {
+        ParseApi.apiService.getMealInfo(calDate.getYesterday()).enqueue(new Callback<MealPojo>() {
             @Override
             public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
                 if(response.body() != null) {
