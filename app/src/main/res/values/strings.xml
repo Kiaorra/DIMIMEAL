@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">DIMIMEAL</string>
-    <string name="title_meal">아침</string>
+    <string name="title_breakfast">아침</string>
+    <string name="title_lunch">점심</string>
+    <string name="title_dinner">저녁</string>
+    <string name="title_snack">간식</string>
+
+    <string name="no_breakfast">아침이 제공되지 않습니다.</string>
+    <string name="no_lunch">점심이 제공되지 않습니다.</string>
+    <string name="no_dinner">저녁이 제공되지 않습니다.</string>
+    <string name="no_snack">간식이 제공되지 않습니다.</string>
 </resources>

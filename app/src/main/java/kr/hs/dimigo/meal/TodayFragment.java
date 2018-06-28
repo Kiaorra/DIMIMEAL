@@ -8,13 +8,45 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class TodayFragment extends Fragment {
+
+    TextView textBreakfast;
+    TextView textLunch;
+    TextView textDinner;
+    TextView textSnack;
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        TextView textView = getActivity().findViewById(R.id.breakfast);
-        textView.setText("테스트 | 테스트 | 테스트");
+        textBreakfast = getActivity().findViewById(R.id.textBreakfast);
+        textLunch = getActivity().findViewById(R.id.textLunch);
+        textDinner = getActivity().findViewById(R.id.textDinner);
+        textSnack = getActivity().findViewById(R.id.textSnack);
+
+        DateCal dateCal = new DateCal();
+
+        ParseApi.apiService.getMealInfo(dateCal.getToday()).enqueue(new Callback<MealPojo>() {
+            @Override
+            public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
+                if(response.body() != null) {
+                    textBreakfast.setText(response.body().getBreakfast());
+                    textLunch.setText(response.body().getLunch());
+                    textDinner.setText(response.body().getDinner());
+                    textSnack.setText(response.body().getSnack());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MealPojo> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override
