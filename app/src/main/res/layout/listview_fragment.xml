@@ -25,6 +25,11 @@
             app:layout_constraintTop_toTopOf="parent"/>
     </android.support.constraint.ConstraintLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,6 +62,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_breakfast"
+                android:lineSpacingMultiplier="1.8"
                 android:textColor="#676767"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +73,6 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F0F0F0"
             android:layout_weight="1" >
 
         <TextView
@@ -91,6 +96,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="@string/no_lunch"
+            android:lineSpacingMultiplier="1.8"
             android:textColor="#676767"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +130,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_dinner"
+                android:lineSpacingMultiplier="1.8"
                 android:textColor="#676767"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -134,7 +141,6 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F0F0F0"
             android:layout_weight="1" >
 
             <TextView
@@ -158,6 +164,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/no_snack"
+                android:lineSpacingMultiplier="1.8"
                 android:textColor="#676767"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -165,4 +172,5 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleSnack" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

@@ -115,7 +115,9 @@ public class NumberToWord {
     }
 
     private String checkYear(String dates) {
-        return null;
+        String year = dates.substring(0,4);
+
+        return year;
     }
 
 }

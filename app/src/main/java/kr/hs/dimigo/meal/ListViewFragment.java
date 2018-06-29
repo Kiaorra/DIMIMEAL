@@ -3,6 +3,7 @@ package kr.hs.dimigo.meal;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ListViewFragment extends Fragment {
+public class ListViewFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     TextView dayTime;
     TextView mealContent;
@@ -59,5 +60,10 @@ public class ListViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.listview_fragment, container, false);
+    }
+
+    @Override
+    public void onRefresh() {
+
     }
 }
