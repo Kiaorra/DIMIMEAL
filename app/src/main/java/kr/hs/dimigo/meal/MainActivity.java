@@ -9,17 +9,21 @@ import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
 
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener{
 
     private static final String TAG = "MainActivity";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private SwipeRefreshLayout swipeRefresh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        swipeRefresh = findViewById(R.id.swipeRefresh);
+        swipeRefresh.setColorSchemeResources(R.color.colorAccent);
 
         // Adding Toolbar to the activity
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -60,4 +64,8 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    @Override
+    public void onRefresh() {
+
+    }
 }
