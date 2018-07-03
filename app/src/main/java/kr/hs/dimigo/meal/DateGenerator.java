@@ -3,11 +3,11 @@ package kr.hs.dimigo.meal;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class CalDate {
+public class DateGenerator {
 
     String currentDate;
 
-    public CalDate() {
+    public DateGenerator() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         Calendar calendar =  Calendar.getInstance();
         currentDate = simpleDateFormat.format(calendar.getTime());

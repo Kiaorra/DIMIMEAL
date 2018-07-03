@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal;
+package kr.hs.dimigo.meal.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,8 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.parsing.MealPojo;
-import kr.hs.dimigo.meal.parsing.ParseApi;
+import kr.hs.dimigo.meal.DateGenerator;
+import kr.hs.dimigo.meal.R;
+import kr.hs.dimigo.meal.communication.MealPojo;
+import kr.hs.dimigo.meal.communication.ParseApi;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,9 +32,9 @@ public class YesterdayFragment extends Fragment{
         textDinner = getActivity().findViewById(R.id.textDinner);
         textSnack = getActivity().findViewById(R.id.textSnack);
 
-        CalDate calDate = new CalDate();
+        DateGenerator dateGenerator = new DateGenerator();
 
-        ParseApi.apiService.getMealInfo(calDate.getYesterday()).enqueue(new Callback<MealPojo>() {
+        ParseApi.apiService.getMealInfo(dateGenerator.getYesterday()).enqueue(new Callback<MealPojo>() {
             @Override
             public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
                 if(response.body() != null) {

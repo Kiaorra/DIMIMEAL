@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.parsing;
+package kr.hs.dimigo.meal.communication;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

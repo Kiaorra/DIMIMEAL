@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import kr.hs.dimigo.meal.ListViewFragment;
-import kr.hs.dimigo.meal.TomorrowFragment;
-import kr.hs.dimigo.meal.YesterdayFragment;
+import kr.hs.dimigo.meal.fragments.ListViewFragment;
+import kr.hs.dimigo.meal.fragments.TomorrowFragment;
+import kr.hs.dimigo.meal.fragments.YesterdayFragment;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
