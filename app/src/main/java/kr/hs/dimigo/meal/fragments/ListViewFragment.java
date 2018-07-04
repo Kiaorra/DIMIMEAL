@@ -7,10 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import kr.hs.dimigo.meal.FragmentsController;
-import kr.hs.dimigo.meal.MealContents;
 import kr.hs.dimigo.meal.R;
 
 public class ListViewFragment extends Fragment{
@@ -21,7 +18,6 @@ public class ListViewFragment extends Fragment{
         return inflater.inflate(R.layout.listview_fragment, container, false);
     }
 
-    // It controlling Fragments UI
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

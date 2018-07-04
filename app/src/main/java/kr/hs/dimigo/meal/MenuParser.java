@@ -9,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FragmentsController {
+public class MenuParser {
 
     DateGenerator dateGenerator = new DateGenerator();
 
@@ -17,7 +17,7 @@ public class FragmentsController {
         todayMenuParsing();
     }
 
-    private void todayMenuParsing() {
+    public boolean todayMenuParsing() {
 
         final MealContents mealContents = MealContents.getInstance();
 
@@ -25,12 +25,13 @@ public class FragmentsController {
             @Override
             public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
                 mealContents.setBreakfastContent(response.body().getBreakfast());
-                Log.d("FragmentsController", mealContents.getBreakfastContent());
+                Log.d("MenuParser", mealContents.getBreakfastContent());
             }
             @Override
             public void onFailure(Call<MealPojo> call, Throwable t) {
 
             }
         });
+        return false;
     }
 }

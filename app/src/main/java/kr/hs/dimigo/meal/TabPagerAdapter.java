@@ -26,7 +26,6 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
             case 1:
                 ListViewFragment listViewFragment = new ListViewFragment();
                 return  listViewFragment;
-
             case 2:
                 TomorrowFragment tomorrowFragment = new TomorrowFragment();
                 return tomorrowFragment;
