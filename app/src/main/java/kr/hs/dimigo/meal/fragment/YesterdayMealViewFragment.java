@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import kr.hs.dimigo.meal.communication.ConnectAPI;
 import kr.hs.dimigo.meal.util.DateGenerator;
 import kr.hs.dimigo.meal.R;
-import kr.hs.dimigo.meal.communication.MealPojo;
-import kr.hs.dimigo.meal.communication.ParseApi;
+import kr.hs.dimigo.meal.communication.Pojo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,9 +34,9 @@ public class YesterdayMealViewFragment extends Fragment{
 
         DateGenerator dateGenerator = new DateGenerator();
 
-        ParseApi.apiService.getMealInfo(dateGenerator.getYesterday()).enqueue(new Callback<MealPojo>() {
+        ConnectAPI.apiService.getMealInfo(dateGenerator.getYesterday()).enqueue(new Callback<Pojo>() {
             @Override
-            public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
+            public void onResponse(Call<Pojo> call, Response<Pojo> response) {
                 if(response.body() != null) {
                     textBreakfast.setText(response.body().getBreakfast());
                     textLunch.setText(response.body().getLunch());
@@ -46,7 +46,7 @@ public class YesterdayMealViewFragment extends Fragment{
             }
 
             @Override
-            public void onFailure(Call<MealPojo> call, Throwable t) {
+            public void onFailure(Call<Pojo> call, Throwable t) {
 
             }
         });

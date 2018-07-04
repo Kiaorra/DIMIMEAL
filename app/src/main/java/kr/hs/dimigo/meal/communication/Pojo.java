@@ -3,7 +3,7 @@ package kr.hs.dimigo.meal.communication;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MealPojo {
+public class Pojo {
 
     @SerializedName("breakfast")
     @Expose

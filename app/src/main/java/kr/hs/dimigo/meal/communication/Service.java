@@ -4,8 +4,8 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface ApiService {
+public interface Service {
 
     @GET("/dimibobs/{date}")
-    Call<MealPojo> getMealInfo(@Path("date") String dates);
+    Call<Pojo> getMealInfo(@Path("date") String dates);
 }

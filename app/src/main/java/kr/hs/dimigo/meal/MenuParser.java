@@ -1,13 +1,6 @@
 package kr.hs.dimigo.meal;
 
-import android.util.Log;
-
-import kr.hs.dimigo.meal.communication.MealPojo;
-import kr.hs.dimigo.meal.communication.ParseApi;
 import kr.hs.dimigo.meal.util.DateGenerator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MenuParser {
 
@@ -21,14 +14,14 @@ public class MenuParser {
 
 //        final MealContents mealContents = MealContents.getInstance();
 //
-//        ParseApi.apiService.getMealInfo(dateGenerator.getToday()).enqueue(new Callback<MealPojo>() {
+//        ConnectAPI.apiService.getMealInfo(dateGenerator.getToday()).enqueue(new Callback<Pojo>() {
 //            @Override
-//            public void onResponse(Call<MealPojo> call, Response<MealPojo> response) {
+//            public void onResponse(Call<Pojo> call, Response<Pojo> response) {
 //                mealContents.setBreakfastContent(response.body().getBreakfast());
 //                Log.d("MenuParser", mealContents.getBreakfastContent());
 //            }
 //            @Override
-//            public void onFailure(Call<MealPojo> call, Throwable t) {
+//            public void onFailure(Call<Pojo> call, Throwable t) {
 //
 //            }
 //        });
