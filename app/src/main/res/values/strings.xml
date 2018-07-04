@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">DIMIMEAL</string>
+
+    <string name="sample_date_title">THU, FEBRUARY 24, 1955</string>
+
     <string name="title_breakfast">아침</string>
     <string name="title_lunch">점심</string>
     <string name="title_dinner">저녁</string>

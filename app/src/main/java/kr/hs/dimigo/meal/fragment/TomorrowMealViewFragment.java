@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.fragments;
+package kr.hs.dimigo.meal.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 
 import kr.hs.dimigo.meal.R;
 
-public class TomorrowFragment extends Fragment {
+public class TomorrowMealViewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tomorrow_fragment, container, false);
+        return inflater.inflate(R.layout.tomorrow_meal_view_fragment, container, false);
     }
 }

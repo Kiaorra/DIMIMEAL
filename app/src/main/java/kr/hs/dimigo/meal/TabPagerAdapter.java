@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import kr.hs.dimigo.meal.fragments.ListViewFragment;
-import kr.hs.dimigo.meal.fragments.TomorrowFragment;
-import kr.hs.dimigo.meal.fragments.YesterdayFragment;
+import kr.hs.dimigo.meal.fragment.TodayMealViewFragment;
+import kr.hs.dimigo.meal.fragment.TomorrowMealViewFragment;
+import kr.hs.dimigo.meal.fragment.YesterdayMealViewFragment;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -21,13 +21,13 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                YesterdayFragment yesterdayFragment = new YesterdayFragment();
+                YesterdayMealViewFragment yesterdayFragment = new YesterdayMealViewFragment();
                 return yesterdayFragment;
             case 1:
-                ListViewFragment listViewFragment = new ListViewFragment();
+                TodayMealViewFragment listViewFragment = new TodayMealViewFragment();
                 return  listViewFragment;
             case 2:
-                TomorrowFragment tomorrowFragment = new TomorrowFragment();
+                TomorrowMealViewFragment tomorrowFragment = new TomorrowMealViewFragment();
                 return tomorrowFragment;
             default:
                 return null;

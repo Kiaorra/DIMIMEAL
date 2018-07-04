@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.fragments;
+package kr.hs.dimigo.meal.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.DateGenerator;
+import kr.hs.dimigo.meal.util.DateGenerator;
 import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.communication.MealPojo;
 import kr.hs.dimigo.meal.communication.ParseApi;
@@ -16,7 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class YesterdayFragment extends Fragment{
+public class YesterdayMealViewFragment extends Fragment{
 
     TextView textBreakfast;
     TextView textLunch;
@@ -54,6 +54,6 @@ public class YesterdayFragment extends Fragment{
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.yesterday_fragment, container, false);
+        return inflater.inflate(R.layout.yesterday_meal_view_fragment, container, false);
     }
 }
