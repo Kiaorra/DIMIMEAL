@@ -8,40 +8,46 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.communication.ConnectAPI;
-import kr.hs.dimigo.meal.util.DateGenerator;
 import kr.hs.dimigo.meal.R;
+import kr.hs.dimigo.meal.communication.ConnectAPI;
 import kr.hs.dimigo.meal.communication.Pojo;
+import kr.hs.dimigo.meal.util.DateGenerator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class YesterdayMealViewFragment extends Fragment{
 
-    TextView textBreakfast;
-    TextView textLunch;
-    TextView textDinner;
-    TextView textSnack;
+    TextView yesterdayBreakfastMenuContent;
+    TextView yesterdayLunchMenuContent;
+    TextView yesterdayDinnerMenuContent;
+    TextView yesterdaySnackMenuContent;
+
+    DateGenerator dateGenerator = new DateGenerator();
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.yesterday_meal_view_fragment, container, false);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        textBreakfast = getActivity().findViewById(R.id.textBreakfast);
-        textLunch = getActivity().findViewById(R.id.textLunch);
-        textDinner = getActivity().findViewById(R.id.textDinner);
-        textSnack = getActivity().findViewById(R.id.textSnack);
-
-        DateGenerator dateGenerator = new DateGenerator();
+        yesterdayBreakfastMenuContent = getActivity().findViewById(R.id.yesterdayBreakfastMenuContent);
+        yesterdayLunchMenuContent = getActivity().findViewById(R.id.yesterdayLunchMenuContent);
+        yesterdayDinnerMenuContent = getActivity().findViewById(R.id.yesterdayDinnerMenuContent);
+        yesterdaySnackMenuContent = getActivity().findViewById(R.id.yesterdaySnackMenuContent);
 
         ConnectAPI.apiService.getMealInfo(dateGenerator.getYesterday()).enqueue(new Callback<Pojo>() {
             @Override
             public void onResponse(Call<Pojo> call, Response<Pojo> response) {
                 if(response.body() != null) {
-                    textBreakfast.setText(response.body().getBreakfast());
-                    textLunch.setText(response.body().getLunch());
-                    textDinner.setText(response.body().getDinner());
-                    textSnack.setText(response.body().getSnack());
+                    yesterdayBreakfastMenuContent.setText(response.body().getBreakfast());
+                    yesterdayLunchMenuContent.setText(response.body().getLunch());
+                    yesterdayDinnerMenuContent.setText(response.body().getDinner());
+                    yesterdaySnackMenuContent.setText(response.body().getSnack());
                 }
             }
 
@@ -50,10 +56,6 @@ public class YesterdayMealViewFragment extends Fragment{
 
             }
         });
+    }
 
-    }
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.yesterday_meal_view_fragment, container, false);
-    }
 }

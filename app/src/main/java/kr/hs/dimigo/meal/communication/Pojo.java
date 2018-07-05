@@ -3,6 +3,8 @@ package kr.hs.dimigo.meal.communication;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.nio.file.Path;
+
 public class Pojo {
 
     @SerializedName("breakfast")
@@ -22,7 +24,11 @@ public class Pojo {
     private String snack;
 
     public String getBreakfast() {
-        return breakfast;
+        if(breakfast.equals("")) {
+            return "아침이 제공되지 않습니다.";
+        } else {
+            return breakfast;
+        }
     }
 
     public void setBreakfast(String breakfast) {
@@ -30,7 +36,11 @@ public class Pojo {
     }
 
     public String getLunch() {
-        return lunch;
+        if(lunch.equals("")) {
+            return "점심이 제공되지 않습니다.";
+        } else {
+            return lunch;
+        }
     }
 
     public void setLunch(String lunch) {
@@ -38,7 +48,11 @@ public class Pojo {
     }
 
     public String getDinner() {
-        return dinner;
+        if(dinner.equals("")) {
+            return "저녁이 제공되지 않습니다.";
+        } else {
+            return dinner;
+        }
     }
 
     public void setDinner(String dinner) {
@@ -46,7 +60,11 @@ public class Pojo {
     }
 
     public String getSnack() {
-        return snack;
+        if(snack.equals("")) {
+            return "간식이 제공되지 않습니다.";
+        } else {
+            return snack;
+        }
     }
 
     public void setSnack(String snack) {

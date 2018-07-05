@@ -21,14 +21,14 @@ public class TabPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                YesterdayMealViewFragment yesterdayFragment = new YesterdayMealViewFragment();
-                return yesterdayFragment;
+                YesterdayMealViewFragment yesterdayMealViewFragment = new YesterdayMealViewFragment();
+                return yesterdayMealViewFragment;
             case 1:
-                TodayMealViewFragment listViewFragment = new TodayMealViewFragment();
-                return  listViewFragment;
+                TodayMealViewFragment todayMealViewFragment = new TodayMealViewFragment();
+                return  todayMealViewFragment;
             case 2:
-                TomorrowMealViewFragment tomorrowFragment = new TomorrowMealViewFragment();
-                return tomorrowFragment;
+                TomorrowMealViewFragment tomorrowMealViewFragment = new TomorrowMealViewFragment();
+                return tomorrowMealViewFragment;
             default:
                 return null;
         }

@@ -12,7 +12,7 @@
         android:background="#F0F0F0">
 
         <TextView
-            android:id="@+id/dayTime"
+            android:id="@+id/todayDateTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/breakfastMenuContent"
+                android:id="@+id/todayBreakfastMenuContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -84,7 +84,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/lunchMenuContent"
+                android:id="@+id/todayLunchMenuContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -118,7 +118,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dinnerMenuContent"
+                android:id="@+id/todayDinnerMenuContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -152,7 +152,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/snackMenuContent"
+                android:id="@+id/todaySnackMenuContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -167,5 +167,4 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleSnack" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
-
 </LinearLayout>
