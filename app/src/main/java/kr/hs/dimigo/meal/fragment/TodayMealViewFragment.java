@@ -48,6 +48,7 @@ public class TodayMealViewFragment extends Fragment{
                     todayLunchMenuContent.setText(response.body().getLunch());
                     todayDinnerMenuContent.setText(response.body().getDinner());
                     todaySnackMenuContent.setText(response.body().getSnack());
+
                 }
             }
 
