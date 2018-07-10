@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal;
+package kr.hs.dimigo.meal.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

@@ -54,8 +54,8 @@
                 android:id="@+id/todayBreakfastMenuContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginEnd="36dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="8dp"
                 android:lineSpacingMultiplier="1.8"
                 android:text="@string/no_breakfast"
@@ -70,6 +70,7 @@
                 android:layout_width="12dp"
                 android:layout_height="12dp"
                 android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/titleBreakfast"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/titleBreakfast"
                 app:srcCompat="@drawable/ic_lamp_off" />
