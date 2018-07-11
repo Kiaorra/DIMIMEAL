@@ -18,6 +18,8 @@ import retrofit2.Response;
 
 public class TomorrowMealViewFragment extends Fragment {
 
+    TextView tomorrowDateTitle;
+
     TextView tomorrowBreakfastMenuContent;
     TextView tomorrowLunchMenuContent;
     TextView tomorrowDinnerMenuContent;
@@ -34,6 +36,9 @@ public class TomorrowMealViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        tomorrowDateTitle = getActivity().findViewById(R.id.tomorrowDateTitle);
+        tomorrowDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getTomorrow()));
 
         tomorrowBreakfastMenuContent = getActivity().findViewById(R.id.tomorrowBreakfastMenuContent);
         tomorrowLunchMenuContent = getActivity().findViewById(R.id.tomorrowLunchMenuContent);
