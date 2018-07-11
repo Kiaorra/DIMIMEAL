@@ -43,7 +43,8 @@ public class DateGenerator {
             e.printStackTrace();
         }
 
-        resultDate = checkWeekday(date) + ", " + checkMonth(dates) + " " + checkDay(dates) + ", " + checkYear(dates);
+        resultDate = checkYear(dates) + "년 " + checkMonth(dates) + "월 " + checkDay(dates) + "일 " + checkWeekday(date) + "요일";
+//        resultDate = checkWeekday(date) + ", " + checkMonth(dates) + " " + checkDay(dates) + ", " + checkYear(dates);
         return resultDate;
     }
 
@@ -54,16 +55,16 @@ public class DateGenerator {
 
         result = Integer.parseInt(dateFormat.format(date));
 
-        if(result <= 810) {
+        if(result <= 815) {
             return 0;
-        } else if(result >=811 && result <= 1350) {
+        } else if(result >=816 && result <= 1340) {
             return 1;
-        } else if(result >=1351 && result <= 1940) {
+        } else if(result >=1341 && result <= 1920) {
             return 2;
-        } else if(result >= 1941 && result <= 2140) {
+        } else if(result >= 1921 && result <= 2140) {
             return 3;
         } else {
-            return 4;
+            return 0;
         }
     }
 
@@ -74,25 +75,25 @@ public class DateGenerator {
 
         switch (calendar.get(calendar.DAY_OF_WEEK)) {
             case 1:
-                weekday = "SUN";
+                weekday = "일";
                 break;
             case 2:
-                weekday = "MON";
+                weekday = "월";
                 break;
             case 3:
-                weekday = "TUE";
+                weekday = "화";
                 break;
             case 4:
-                weekday = "WED";
+                weekday = "수";
                 break;
             case 5:
-                weekday = "THU";
+                weekday = "목";
                 break;
             case 6:
-                weekday = "FRI";
+                weekday = "금";
                 break;
             case 7:
-                weekday = "SAT";
+                weekday = "토";
                 break;
             default:
                 break;
@@ -102,60 +103,17 @@ public class DateGenerator {
     }
 
     private String checkMonth(String dates) {
-        String month = dates.substring(4, 6);
-
-        switch (month) {
-            case "01":
-                month = "JANUARY";
-                break;
-            case "02":
-                month = "FEBRUARY";
-                break;
-            case "03":
-                month = "MARCH";
-                break;
-            case "04":
-                month = "APRIL";
-                break;
-            case "05":
-                month = "MAY";
-                break;
-            case "06":
-                month = "JUNE";
-                break;
-            case "07":
-                month = "JULY";
-                break;
-            case "08":
-                month = "AUGUST";
-                break;
-            case "09":
-                month = "SEPTEMBER";
-                break;
-            case "10":
-                month = "OCTOBER";
-                break;
-            case "11":
-                month = "NOVEMBER";
-                break;
-            case "12":
-                month = "DECEMBER";
-            default:
-                break;
-        }
-
+        String month = String.valueOf(Integer.parseInt(dates.substring(4, 6)));
         return month;
     }
 
     private String checkDay(String dates) {
         String day = dates.substring(6, 8);
-
         return day;
     }
 
     private String checkYear(String dates) {
         String year = dates.substring(0,4);
-
         return year;
     }
 }
