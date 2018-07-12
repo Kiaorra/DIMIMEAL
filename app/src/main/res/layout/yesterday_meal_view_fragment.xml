@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#F0F0F0">
+        android:background="#E8E8E8">
 
         <TextView
             android:id="@+id/yesterdayDateTitle"

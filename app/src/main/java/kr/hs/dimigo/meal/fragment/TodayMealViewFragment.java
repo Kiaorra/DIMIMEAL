@@ -124,7 +124,7 @@ public class TodayMealViewFragment extends Fragment{
 
             @Override
             public void onFailure(Call<Pojo> call, Throwable t) {
-                Toast.makeText(getContext(), "디미고인 API와의 통신이 불안정합니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "디미고인과의 통신이 원활하지 않습니다.", Toast.LENGTH_LONG).show();
             }
         });
     }
