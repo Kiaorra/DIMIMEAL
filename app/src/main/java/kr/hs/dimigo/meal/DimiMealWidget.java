@@ -14,9 +14,13 @@ public class DimiMealWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
+
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.dimi_meal_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
+
+        views.setImageViewResource(R.id.logoImageView, R.drawable.ic_dimimeal);
+
+//        views.setTextViewText(R.id.appwidget_text, widgetText);
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
