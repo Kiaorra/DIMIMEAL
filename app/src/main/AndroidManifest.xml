@@ -20,14 +20,14 @@
         </activity>
         <activity android:name=".InfoActivity" />
 
-        <receiver android:name=".DimiMealAppWidget">
+        <receiver android:name=".DimiMealWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/dimi_meal_app_widget_info" />
+                android:resource="@xml/dimi_meal_widget_info" />
         </receiver>
     </application>
 

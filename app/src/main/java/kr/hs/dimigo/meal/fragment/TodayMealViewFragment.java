@@ -3,6 +3,7 @@ package kr.hs.dimigo.meal.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -81,6 +82,10 @@ public class TodayMealViewFragment extends Fragment{
                 // 아침시간
                 breakfastLamp.setImageResource(R.drawable.ic_lamp_on);
 
+                // Android API 23이상
+//                titleBreakfast.setTextColor(ContextCompat.getColor(getContext(), R.color.colorBlack));
+
+                // Android API 23미만
                 titleBreakfast.setTextColor(getResources().getColor(R.color.colorBlack));
                 todayBreakfastMenuContent.setTextColor(getResources().getColor(R.color.colorBlack));
                 break;
