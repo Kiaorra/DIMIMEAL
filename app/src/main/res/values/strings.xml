@@ -8,10 +8,7 @@
     <string name="title_dinner">저녁</string>
     <string name="title_snack">간식</string>
 
-    <string name="no_breakfast">아침이 제공되지 않습니다.</string>
-    <string name="no_lunch">점심이 제공되지 않습니다.</string>
-    <string name="no_dinner">저녁이 제공되지 않습니다.</string>
-    <string name="no_snack">간식이 제공되지 않습니다.</string>
+    <string name="no_meal">급식 정보가 없습니다.</string>
 
     <string name="developer">Designed &amp; developed by 15HD 박민서</string>
     <string name="special_thanks">Launcher icon designed by 15WP 이준환</string>

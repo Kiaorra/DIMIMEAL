@@ -25,7 +25,7 @@ public class Pojo {
 
     public String getBreakfast() {
         if(breakfast.equals("")) {
-            return "아침이 제공되지 않습니다.";
+            return "급식 정보가 없습니다.";
         } else {
             return breakfast;
         }
@@ -37,7 +37,7 @@ public class Pojo {
 
     public String getLunch() {
         if(lunch.equals("")) {
-            return "점심이 제공되지 않습니다.";
+            return "급식 정보가 없습니다.";
         } else {
             return lunch;
         }
@@ -49,7 +49,7 @@ public class Pojo {
 
     public String getDinner() {
         if(dinner.equals("")) {
-            return "저녁이 제공되지 않습니다.";
+            return "급식 정보가 없습니다.";
         } else {
             return dinner;
         }
@@ -61,7 +61,7 @@ public class Pojo {
 
     public String getSnack() {
         if(snack.equals("")) {
-            return "간식이 제공되지 않습니다.";
+            return "급식 정보가 없습니다.";
         } else {
             return snack;
         }
