@@ -115,6 +115,7 @@ public class TodayMealViewFragment extends Fragment{
 
         // 디미고인 API 사용을 통한 급식 정보 할당
         // 추후 데이터네트워크 사용량 절감을 위한 코드 최적화 예정
+
         ConnectAPI.apiService.getMealInfo(dateGenerator.getToday()).enqueue(new Callback<Pojo>() {
             @Override
             public void onResponse(Call<Pojo> call, Response<Pojo> response) {

@@ -6,6 +6,6 @@ import retrofit2.http.Path;
 
 public interface Service {
 
-    @GET("/dimibobs/{date}")
+    @GET("/dimibobes/{date}")
     Call<Pojo> getMealInfo(@Path("date") String dates);
 }
