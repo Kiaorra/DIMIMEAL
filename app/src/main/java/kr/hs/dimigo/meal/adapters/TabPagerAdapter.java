@@ -1,12 +1,12 @@
-package kr.hs.dimigo.meal.adapter;
+package kr.hs.dimigo.meal.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import kr.hs.dimigo.meal.fragment.TodayMealViewFragment;
-import kr.hs.dimigo.meal.fragment.TomorrowMealViewFragment;
-import kr.hs.dimigo.meal.fragment.YesterdayMealViewFragment;
+import kr.hs.dimigo.meal.fragments.TodayMealViewFragment;
+import kr.hs.dimigo.meal.fragments.TomorrowMealViewFragment;
+import kr.hs.dimigo.meal.fragments.YesterdayMealViewFragment;
 
 public class TabPagerAdapter extends FragmentStatePagerAdapter {
 

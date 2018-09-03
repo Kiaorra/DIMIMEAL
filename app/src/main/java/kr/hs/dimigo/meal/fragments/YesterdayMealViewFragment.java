@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.fragment;
+package kr.hs.dimigo.meal.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,13 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import kr.hs.dimigo.meal.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
-import kr.hs.dimigo.meal.communication.ConnectAPI;
-import kr.hs.dimigo.meal.communication.Pojo;
-import kr.hs.dimigo.meal.util.DateGenerator;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import kr.hs.dimigo.meal.utils.DateGenerator;
 
 public class YesterdayMealViewFragment extends Fragment{
 
@@ -45,22 +41,6 @@ public class YesterdayMealViewFragment extends Fragment{
         yesterdayDinnerMenuContent = getActivity().findViewById(R.id.yesterdayDinnerMenuContent);
         yesterdaySnackMenuContent = getActivity().findViewById(R.id.yesterdaySnackMenuContent);
 
-        ConnectAPI.apiService.getMealInfo(dateGenerator.getYesterday()).enqueue(new Callback<Pojo>() {
-            @Override
-            public void onResponse(Call<Pojo> call, Response<Pojo> response) {
-                if(response.body() != null) {
-                    yesterdayBreakfastMenuContent.setText(response.body().getBreakfast());
-                    yesterdayLunchMenuContent.setText(response.body().getLunch());
-                    yesterdayDinnerMenuContent.setText(response.body().getDinner());
-                    yesterdaySnackMenuContent.setText(response.body().getSnack());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Pojo> call, Throwable t) {
-
-            }
-        });
+        ApiCommunicator.communicateStart(0, yesterdayBreakfastMenuContent, yesterdayLunchMenuContent, yesterdayDinnerMenuContent, yesterdaySnackMenuContent);
     }
-
 }

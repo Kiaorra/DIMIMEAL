@@ -1,11 +1,11 @@
-package kr.hs.dimigo.meal.communication;
+package kr.hs.dimigo.meal.utils;
+
+import android.util.Log;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.nio.file.Path;
-
-public class Pojo {
+public class MealPojo {
 
     @SerializedName("breakfast")
     @Expose
@@ -31,32 +31,22 @@ public class Pojo {
         }
     }
 
-    public void setBreakfast(String breakfast) {
-        this.breakfast = breakfast;
-    }
-
     public String getLunch() {
         if(lunch.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
+            Log.d("MealInformation", lunch);
             return lunch;
         }
-    }
-
-    public void setLunch(String lunch) {
-        this.lunch = lunch;
     }
 
     public String getDinner() {
         if(dinner.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
+            Log.d("MealInformation", dinner);
             return dinner;
         }
-    }
-
-    public void setDinner(String dinner) {
-        this.dinner = dinner;
     }
 
     public String getSnack() {
@@ -65,10 +55,6 @@ public class Pojo {
         } else {
             return snack;
         }
-    }
-
-    public void setSnack(String snack) {
-        this.snack = snack;
     }
 
 }

@@ -1,6 +1,4 @@
-package kr.hs.dimigo.meal.util;
-
-import android.util.Log;
+package kr.hs.dimigo.meal.utils;
 
 import java.text.DateFormat;
 import java.text.ParseException;

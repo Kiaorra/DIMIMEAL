@@ -1,10 +1,8 @@
-package kr.hs.dimigo.meal.fragment;
+package kr.hs.dimigo.meal.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import kr.hs.dimigo.meal.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
-import kr.hs.dimigo.meal.communication.ConnectAPI;
-import kr.hs.dimigo.meal.communication.Pojo;
-import kr.hs.dimigo.meal.util.DateGenerator;
+import kr.hs.dimigo.meal.utils.DateGenerator;
+import kr.hs.dimigo.meal.utils.InformationDistributor;
+import kr.hs.dimigo.meal.utils.MealPojo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,12 +50,6 @@ public class TodayMealViewFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        if(savedInstanceState == null) {
-            Log.d("TEST", "savedInstanceState is null");
-        } else {
-            Log.d("TEST", "savedInstanceState is not null");
-        }
-
         //현재 날짜 표시
         todayDateTitle = getActivity().findViewById(R.id.todayDateTitle);
         todayDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getToday()));
@@ -76,6 +69,14 @@ public class TodayMealViewFragment extends Fragment{
         todayDinnerMenuContent = getActivity().findViewById(R.id.todayDinnerMenuContent);
         todaySnackMenuContent = getActivity().findViewById(R.id.todaySnackMenuContent);
 
+        // 시간에 따른 램프의 색상 변화
+        timeChangeListener();
+
+        // 디미고인 API 사용을 통한 급식 정보 할당
+        ApiCommunicator.communicateStart(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent);
+    }
+
+    private void timeChangeListener() {
         // 시간에 따라 급식 정보글과 램프의 색상이 변경
         switch (dateGenerator.lampSelector()) {
             case 0 :
@@ -83,7 +84,7 @@ public class TodayMealViewFragment extends Fragment{
                 breakfastLamp.setImageResource(R.drawable.ic_lamp_on);
 
                 // Android API 23이상
-//                titleBreakfast.setTextColor(ContextCompat.getColor(getContext(), R.color.colorBlack));
+                // titleBreakfast.setTextColor(ContextCompat.getColor(getContext(), R.color.colorBlack));
 
                 // Android API 23미만
                 titleBreakfast.setTextColor(getResources().getColor(R.color.colorBlack));
@@ -112,27 +113,5 @@ public class TodayMealViewFragment extends Fragment{
             default:
                 break;
         }
-
-        // 디미고인 API 사용을 통한 급식 정보 할당
-        // 추후 데이터네트워크 사용량 절감을 위한 코드 최적화 예정
-
-        ConnectAPI.apiService.getMealInfo(dateGenerator.getToday()).enqueue(new Callback<Pojo>() {
-            @Override
-            public void onResponse(Call<Pojo> call, Response<Pojo> response) {
-                if(response.body() != null) {
-                    todayBreakfastMenuContent.setText(response.body().getBreakfast());
-                    todayLunchMenuContent.setText(response.body().getLunch());
-                    todayDinnerMenuContent.setText(response.body().getDinner());
-                    todaySnackMenuContent.setText(response.body().getSnack());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Pojo> call, Throwable t) {
-                Toast.makeText(getContext(), "디미고인과의 통신이 원활하지 않습니다.", Toast.LENGTH_LONG).show();
-            }
-        });
     }
-
 }

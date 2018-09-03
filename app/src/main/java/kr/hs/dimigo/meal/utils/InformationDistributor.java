@@ -1,15 +1,15 @@
-package kr.hs.dimigo.meal.communication;
+package kr.hs.dimigo.meal.utils;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ConnectAPI {
+public class InformationDistributor {
 
     private static final String BASE_URL = "https://api.dimigo.in";
 
-    public static final Service apiService = new Retrofit.Builder()
+    public static final EndInfoTransmitter API_END_INFO_TRANSMITTER = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(Service.class);
+            .create(EndInfoTransmitter.class);
 }
