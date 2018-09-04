@@ -1,42 +1,30 @@
 package kr.hs.dimigo.meal.fragments;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import kr.hs.dimigo.meal.ApiCommunicator;
+import kr.hs.dimigo.meal.utils.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.utils.DateGenerator;
-import kr.hs.dimigo.meal.utils.InformationDistributor;
-import kr.hs.dimigo.meal.utils.MealPojo;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TodayMealViewFragment extends Fragment{
 
+    static final String BLACK = "#000000";
+
+    SwipeRefreshLayout todayRefreshLayout;
     TextView todayDateTitle;
-
-    ImageView breakfastLamp;
-    ImageView lunchLamp;
-    ImageView dinnerLamp;
-    ImageView snackLamp;
-
-    TextView todayBreakfastMenuContent;
-    TextView todayLunchMenuContent;
-    TextView todayDinnerMenuContent;
-    TextView todaySnackMenuContent;
-
-    TextView titleBreakfast;
-    TextView titleLunch;
-    TextView titleDinner;
-    TextView titleSnack;
+    ImageView breakfastLamp, lunchLamp, dinnerLamp, snackLamp;
+    TextView todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent;
+    TextView titleBreakfast, titleLunch, titleDinner, titleSnack;
 
     DateGenerator dateGenerator = new DateGenerator();
 
@@ -50,7 +38,10 @@ public class TodayMealViewFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        //현재 날짜 표시
+        todayRefreshLayout = getActivity().findViewById(R.id.todayRefreshLayout);
+        todayRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+        //현재 날짜를 표시함
         todayDateTitle = getActivity().findViewById(R.id.todayDateTitle);
         todayDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getToday()));
 
@@ -69,46 +60,44 @@ public class TodayMealViewFragment extends Fragment{
         todayDinnerMenuContent = getActivity().findViewById(R.id.todayDinnerMenuContent);
         todaySnackMenuContent = getActivity().findViewById(R.id.todaySnackMenuContent);
 
-        // 시간에 따른 램프의 색상 변화
-        timeChangeListener();
+        // 시간에 따라 급식 정보글과 램프의 색상을 변경함
+        lampColorChanger();
 
-        // 디미고인 API 사용을 통한 급식 정보 할당
-        ApiCommunicator.communicateStart(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent);
+        ApiCommunicator apiCommunicator = new ApiCommunicator(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent, todayRefreshLayout, getView(), getContext());
+        apiCommunicator.initCommunicate();
+
+        todayRefreshLayout.setOnRefreshListener(()->{
+            lampColorChanger();
+            apiCommunicator.initCommunicate();
+        });
     }
 
-    private void timeChangeListener() {
-        // 시간에 따라 급식 정보글과 램프의 색상이 변경
+    private void lampColorChanger() {
+        // 시간에 따라 급식 정보글과 램프의 색상을 변경함
         switch (dateGenerator.lampSelector()) {
             case 0 :
                 // 아침시간
                 breakfastLamp.setImageResource(R.drawable.ic_lamp_on);
-
-                // Android API 23이상
-                // titleBreakfast.setTextColor(ContextCompat.getColor(getContext(), R.color.colorBlack));
-
-                // Android API 23미만
-                titleBreakfast.setTextColor(getResources().getColor(R.color.colorBlack));
-                todayBreakfastMenuContent.setTextColor(getResources().getColor(R.color.colorBlack));
+                titleBreakfast.setTextColor(Color.parseColor(BLACK));
+                todayBreakfastMenuContent.setTextColor(Color.parseColor(BLACK));
                 break;
             case 1:
                 // 점심시간
                 lunchLamp.setImageResource(R.drawable.ic_lamp_on);
-                titleLunch.setTextColor(getResources().getColor(R.color.colorBlack));
-                todayLunchMenuContent.setTextColor(getResources().getColor(R.color.colorBlack));
+                titleLunch.setTextColor(Color.parseColor(BLACK));
+                todayLunchMenuContent.setTextColor(Color.parseColor(BLACK));
                 break;
             case 2:
                 // 저녁시간
                 dinnerLamp.setImageResource(R.drawable.ic_lamp_on);
-
-                titleDinner.setTextColor(getResources().getColor(R.color.colorBlack));
-                todayDinnerMenuContent.setTextColor(getResources().getColor(R.color.colorBlack));
+                titleDinner.setTextColor(Color.parseColor(BLACK));
+                todayDinnerMenuContent.setTextColor(Color.parseColor(BLACK));
                 break;
             case 3:
                 // 간식시간
                 snackLamp.setImageResource(R.drawable.ic_lamp_on);
-
-                titleSnack.setTextColor(getResources().getColor(R.color.colorBlack));
-                todaySnackMenuContent.setTextColor(getResources().getColor(R.color.colorBlack));
+                titleSnack.setTextColor(Color.parseColor(BLACK));
+                todaySnackMenuContent.setTextColor(Color.parseColor(BLACK));
                 break;
             default:
                 break;

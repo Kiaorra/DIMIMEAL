@@ -3,23 +3,22 @@ package kr.hs.dimigo.meal.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
+import kr.hs.dimigo.meal.utils.ApiCommunicator;
 import kr.hs.dimigo.meal.utils.DateGenerator;
 
 public class TomorrowMealViewFragment extends Fragment {
+    SwipeRefreshLayout tomorrowRefreshLayout;
 
     TextView tomorrowDateTitle;
 
-    TextView tomorrowBreakfastMenuContent;
-    TextView tomorrowLunchMenuContent;
-    TextView tomorrowDinnerMenuContent;
-    TextView tomorrowSnackMenuContent;
+    TextView tomorrowBreakfastMenuContent, tomorrowLunchMenuContent, tomorrowDinnerMenuContent, tomorrowSnackMenuContent;
 
     DateGenerator dateGenerator = new DateGenerator();
 
@@ -32,6 +31,8 @@ public class TomorrowMealViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        tomorrowRefreshLayout = getActivity().findViewById(R.id.tomorrowRefreshLayout);
+        tomorrowRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
         tomorrowDateTitle = getActivity().findViewById(R.id.tomorrowDateTitle);
         tomorrowDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getTomorrow()));
@@ -41,6 +42,11 @@ public class TomorrowMealViewFragment extends Fragment {
         tomorrowDinnerMenuContent = getActivity().findViewById(R.id.tomorrowDinnerMenuContent);
         tomorrowSnackMenuContent = getActivity().findViewById(R.id.tomorrowSnackMenuContent);
 
-        ApiCommunicator.communicateStart(2, tomorrowBreakfastMenuContent, tomorrowLunchMenuContent, tomorrowDinnerMenuContent, tomorrowSnackMenuContent);
+        ApiCommunicator apiCommunicator = new ApiCommunicator(2, tomorrowBreakfastMenuContent, tomorrowLunchMenuContent, tomorrowDinnerMenuContent, tomorrowSnackMenuContent, tomorrowRefreshLayout, getView(), getContext());
+        apiCommunicator.initCommunicate();
+
+        tomorrowRefreshLayout.setOnRefreshListener(()->{
+            apiCommunicator.initCommunicate();
+        });
     }
 }

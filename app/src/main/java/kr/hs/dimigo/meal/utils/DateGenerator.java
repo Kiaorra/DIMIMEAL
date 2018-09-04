@@ -8,14 +8,16 @@ import java.util.Date;
 
 public class DateGenerator {
 
-    String currentDate;
-    String resultDate;
-    Date date;
+    private String currentDate;
+    private String resultDate;
+    private Date date;
+
+    private String refinedDate;
 
     Calendar calendar = Calendar.getInstance();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
 
     public DateGenerator() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         currentDate = simpleDateFormat.format(calendar.getTime());
     }
 
@@ -24,19 +26,19 @@ public class DateGenerator {
     }
 
     public String getYesterday() {
-        currentDate = String.valueOf((Integer.parseInt(currentDate) - 1));
-        return currentDate;
+        refinedDate = String.valueOf((Integer.parseInt(currentDate) - 1));
+        return refinedDate;
     }
 
     public String getTomorrow() {
-        currentDate = String.valueOf((Integer.parseInt(currentDate) + 1));
-        return currentDate;
+        refinedDate = String.valueOf((Integer.parseInt(currentDate) + 1));
+        return refinedDate;
     }
 
     public String dateTitleProvider(String dates) {
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+//        DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
         try {
-            date = dateFormat.parse(dates);
+            date = simpleDateFormat.parse(dates);
         } catch (ParseException e) {
             e.printStackTrace();
         }
