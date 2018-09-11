@@ -14,7 +14,6 @@ import kr.hs.dimigo.meal.utils.ApiCommunicator;
 import kr.hs.dimigo.meal.utils.DateGenerator;
 
 public class TomorrowMealViewFragment extends Fragment {
-    SwipeRefreshLayout tomorrowRefreshLayout;
 
     TextView tomorrowDateTitle;
 
@@ -31,8 +30,6 @@ public class TomorrowMealViewFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        tomorrowRefreshLayout = getActivity().findViewById(R.id.tomorrowRefreshLayout);
-        tomorrowRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
         tomorrowDateTitle = getActivity().findViewById(R.id.tomorrowDateTitle);
         tomorrowDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getTomorrow()));
@@ -42,11 +39,8 @@ public class TomorrowMealViewFragment extends Fragment {
         tomorrowDinnerMenuContent = getActivity().findViewById(R.id.tomorrowDinnerMenuContent);
         tomorrowSnackMenuContent = getActivity().findViewById(R.id.tomorrowSnackMenuContent);
 
-        ApiCommunicator apiCommunicator = new ApiCommunicator(2, tomorrowBreakfastMenuContent, tomorrowLunchMenuContent, tomorrowDinnerMenuContent, tomorrowSnackMenuContent, tomorrowRefreshLayout, getView(), getContext());
+        ApiCommunicator apiCommunicator = new ApiCommunicator(2, tomorrowBreakfastMenuContent, tomorrowLunchMenuContent, tomorrowDinnerMenuContent, tomorrowSnackMenuContent, getView(), getContext());
         apiCommunicator.initCommunicate();
 
-        tomorrowRefreshLayout.setOnRefreshListener(()->{
-            apiCommunicator.initCommunicate();
-        });
     }
 }

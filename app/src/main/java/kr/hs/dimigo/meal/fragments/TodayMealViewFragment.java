@@ -1,11 +1,11 @@
 package kr.hs.dimigo.meal.fragments;
 
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +17,17 @@ import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.utils.DateGenerator;
 
 public class TodayMealViewFragment extends Fragment{
+
+    private static TodayMealViewFragment todayMealViewFragment;
+
+    public static TodayMealViewFragment getInstance() {
+        if(todayMealViewFragment == null) {
+            todayMealViewFragment = new TodayMealViewFragment();
+            return todayMealViewFragment;
+        } else {
+            return todayMealViewFragment;
+        }
+    }
 
     static final String BLACK = "#000000";
 
@@ -37,9 +48,6 @@ public class TodayMealViewFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        todayRefreshLayout = getActivity().findViewById(R.id.todayRefreshLayout);
-        todayRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
         //현재 날짜를 표시함
         todayDateTitle = getActivity().findViewById(R.id.todayDateTitle);
@@ -63,13 +71,9 @@ public class TodayMealViewFragment extends Fragment{
         // 시간에 따라 급식 정보글과 램프의 색상을 변경함
         lampColorChanger();
 
-        ApiCommunicator apiCommunicator = new ApiCommunicator(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent, todayRefreshLayout, getView(), getContext());
+        ApiCommunicator apiCommunicator = new ApiCommunicator(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent, getView(), getContext());
         apiCommunicator.initCommunicate();
 
-        todayRefreshLayout.setOnRefreshListener(()->{
-            lampColorChanger();
-            apiCommunicator.initCommunicate();
-        });
     }
 
     private void lampColorChanger() {

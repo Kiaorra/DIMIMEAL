@@ -6,6 +6,6 @@ import retrofit2.http.Path;
 
 public interface EndInfoTransmitter {
 
-    @GET("/dimibobes/{date}")
+    @GET("/dimibobs/{date}")
     Call<MealPojo> getMealInfo(@Path("date") String dates);
 }

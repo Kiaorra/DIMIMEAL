@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import kr.hs.dimigo.meal.adapters.TabPagerAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,27 +20,24 @@ public class ApiCommunicator {
     private int dateOrder;
 
     private TextView breakfast, lunch, dinner, snack;
-    private SwipeRefreshLayout refreshLayout;
     private View view;
     private Context context;
 
-    public ApiCommunicator(int dateOrder, TextView breakfast, TextView lunch, TextView dinner, TextView snack, SwipeRefreshLayout refreshLayout, View view) {
+    public ApiCommunicator(int dateOrder, TextView breakfast, TextView lunch, TextView dinner, TextView snack, View view) {
         this.dateOrder = dateOrder;
         this.breakfast = breakfast;
         this.lunch = lunch;
         this.dinner = dinner;
         this.snack = snack;
-        this.refreshLayout = refreshLayout;
         this.view = view;
     }
 
-    public ApiCommunicator(int dateOrder, TextView breakfast, TextView lunch, TextView dinner, TextView snack, SwipeRefreshLayout refreshLayout, View view, Context context) {
+    public ApiCommunicator(int dateOrder, TextView breakfast, TextView lunch, TextView dinner, TextView snack, View view, Context context) {
         this.dateOrder = dateOrder;
         this.breakfast = breakfast;
         this.lunch = lunch;
         this.dinner = dinner;
         this.snack = snack;
-        this.refreshLayout = refreshLayout;
         this.view = view;
         this.context = context;
     }
@@ -71,12 +69,10 @@ public class ApiCommunicator {
                     dinner.setText(response.body().getDinner());
                     snack.setText(response.body().getSnack());
                 } else if(response.body() == null) {
-                    refreshLayout.setRefreshing(false);
                     if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                         Snackbar.make(view, "급식정보가 존재하지 않습니다", Snackbar.LENGTH_LONG).setAction("새로고침", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                refreshLayout.setRefreshing(true);
                                 initCommunicate();
                             }
                         }).show();
@@ -88,12 +84,10 @@ public class ApiCommunicator {
 
             @Override
             public void onFailure(Call<MealPojo> call, Throwable t) {
-                refreshLayout.setRefreshing(false);
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
                     Snackbar.make(view, "네트워크 통신이 원활하지 않습니다.", Snackbar.LENGTH_LONG).setAction("새로고침", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            refreshLayout.setRefreshing(true);
                             initCommunicate();
                         }
                     }).show();

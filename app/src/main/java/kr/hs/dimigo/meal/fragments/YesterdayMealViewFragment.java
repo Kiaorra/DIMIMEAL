@@ -14,7 +14,17 @@ import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.utils.DateGenerator;
 
 public class YesterdayMealViewFragment extends Fragment{
-    SwipeRefreshLayout yesterdayRefreshLayout;
+
+    private static YesterdayMealViewFragment yesterdayMealViewFragment;
+
+    public static YesterdayMealViewFragment getInstance() {
+        if(yesterdayMealViewFragment == null) {
+            yesterdayMealViewFragment = new YesterdayMealViewFragment();
+            return yesterdayMealViewFragment;
+        } else {
+            return yesterdayMealViewFragment;
+        }
+    }
 
     TextView yesterdayDateTitle;
 
@@ -31,8 +41,6 @@ public class YesterdayMealViewFragment extends Fragment{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        yesterdayRefreshLayout = getActivity().findViewById(R.id.yesterdayRefreshLayout);
-        yesterdayRefreshLayout.setColorSchemeResources(R.color.colorAccent);
 
         yesterdayDateTitle = getActivity().findViewById(R.id.yesterdayDateTitle);
         yesterdayDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getYesterday()));
@@ -42,11 +50,8 @@ public class YesterdayMealViewFragment extends Fragment{
         yesterdayDinnerMenuContent = getActivity().findViewById(R.id.yesterdayDinnerMenuContent);
         yesterdaySnackMenuContent = getActivity().findViewById(R.id.yesterdaySnackMenuContent);
 
-        ApiCommunicator apiCommunicator = new ApiCommunicator(1, yesterdayBreakfastMenuContent, yesterdayLunchMenuContent, yesterdayDinnerMenuContent, yesterdaySnackMenuContent, yesterdayRefreshLayout, getView(), getContext());
+        ApiCommunicator apiCommunicator = new ApiCommunicator(0, yesterdayBreakfastMenuContent, yesterdayLunchMenuContent, yesterdayDinnerMenuContent, yesterdaySnackMenuContent, getView(), getContext());
         apiCommunicator.initCommunicate();
 
-        yesterdayRefreshLayout.setOnRefreshListener(()->{
-            apiCommunicator.initCommunicate();
-        });
     }
 }
