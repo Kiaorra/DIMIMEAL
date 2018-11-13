@@ -15,6 +15,7 @@ public class DateCalculator {
 
     public DateCalculator() { }
 
+    // 요청한 메소드를 포함한 클래스에 따라 다른 값을 리턴하는 메소드이다.
     public static String getDate(int position) {
 
         date = simpleDateFormat.format(calendar.getTime());
@@ -35,9 +36,12 @@ public class DateCalculator {
     }
 
     public String getTitleByDate(int position) {
-        return date.substring(0, 4) + "년" +
-                date.substring(4, 6) + "월" +
-                date.substring(6, 8) + "일";
+
+        String titleDate = getDate(position);
+
+        return titleDate.substring(0, 4) + "년" +
+                titleDate.substring(4, 6) + "월" +
+                titleDate.substring(6, 8) + "일";
     }
 
     private String getWeekDay(Date date) {
