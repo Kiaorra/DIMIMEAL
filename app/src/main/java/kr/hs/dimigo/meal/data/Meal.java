@@ -1,11 +1,9 @@
-package kr.hs.dimigo.meal.utils;
-
-import android.util.Log;
+package kr.hs.dimigo.meal.data;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class MealPojo {
+public class Meal {
 
     @SerializedName("breakfast")
     @Expose
@@ -27,7 +25,6 @@ public class MealPojo {
         if(breakfast.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
-            Log.d("MealPojo - Breakfast", breakfast);
             return breakfast;
         }
     }
@@ -36,7 +33,6 @@ public class MealPojo {
         if(lunch.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
-            Log.d("MealPojo - Lunch", lunch);
             return lunch;
         }
     }
@@ -45,7 +41,6 @@ public class MealPojo {
         if(dinner.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
-            Log.d("MealPojo - Dinner", dinner);
             return dinner;
         }
     }
@@ -54,9 +49,7 @@ public class MealPojo {
         if(snack.equals("")) {
             return "급식 정보가 없습니다.";
         } else {
-            Log.d("MealPojo - Snack", snack);
             return snack;
         }
     }
-
 }

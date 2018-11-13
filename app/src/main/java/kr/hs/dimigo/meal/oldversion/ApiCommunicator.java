@@ -1,16 +1,15 @@
-package kr.hs.dimigo.meal.utils;
+package kr.hs.dimigo.meal.oldversion;
 
 
 import android.content.Context;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
-import android.support.v4.widget.SwipeRefreshLayout;
 
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import kr.hs.dimigo.meal.adapters.TabPagerAdapter;
+import kr.hs.dimigo.meal.data.DateCalculator;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,18 +42,18 @@ public class ApiCommunicator {
     }
 
     public void initCommunicate() {
-        DateGenerator dateGenerator = new DateGenerator();
+        DateCalculator dateCalculator = new DateCalculator();
         String date = null;
 
         switch (dateOrder) {
             case 0:
-                date = dateGenerator.getYesterday();
+//                date = dateCalculator.getYesterday();
                 break;
             case 1:
-                date = dateGenerator.getToday();
+//                date = dateCalculator.getToday();
                 break;
             case 2:
-                date = dateGenerator.getTomorrow();
+//                date = dateCalculator.getTomorrow();
                 break;
             default:
                 break;

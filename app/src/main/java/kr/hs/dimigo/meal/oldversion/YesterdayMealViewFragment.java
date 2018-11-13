@@ -1,17 +1,15 @@
-package kr.hs.dimigo.meal.fragments;
+package kr.hs.dimigo.meal.oldversion;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.utils.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
-import kr.hs.dimigo.meal.utils.DateGenerator;
+import kr.hs.dimigo.meal.data.DateCalculator;
 
 public class YesterdayMealViewFragment extends Fragment{
 
@@ -30,7 +28,7 @@ public class YesterdayMealViewFragment extends Fragment{
 
     TextView yesterdayBreakfastMenuContent, yesterdayLunchMenuContent, yesterdayDinnerMenuContent, yesterdaySnackMenuContent;
 
-    DateGenerator dateGenerator = new DateGenerator();
+    DateCalculator dateCalculator = new DateCalculator();
 
     @Nullable
     @Override
@@ -43,7 +41,7 @@ public class YesterdayMealViewFragment extends Fragment{
         super.onActivityCreated(savedInstanceState);
 
         yesterdayDateTitle = getActivity().findViewById(R.id.yesterdayDateTitle);
-        yesterdayDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getYesterday()));
+//        yesterdayDateTitle.setText(dateCalculator.dateTitleProvider(dateCalculator.getYesterday()));
 
         yesterdayBreakfastMenuContent = getActivity().findViewById(R.id.yesterdayBreakfastMenuContent);
         yesterdayLunchMenuContent = getActivity().findViewById(R.id.yesterdayLunchMenuContent);

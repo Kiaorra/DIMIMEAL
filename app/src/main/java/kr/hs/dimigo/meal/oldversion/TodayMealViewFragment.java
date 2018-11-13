@@ -1,20 +1,18 @@
-package kr.hs.dimigo.meal.fragments;
+package kr.hs.dimigo.meal.oldversion;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import kr.hs.dimigo.meal.utils.ApiCommunicator;
 import kr.hs.dimigo.meal.R;
-import kr.hs.dimigo.meal.utils.DateGenerator;
+import kr.hs.dimigo.meal.data.DateCalculator;
 
 public class TodayMealViewFragment extends Fragment{
 
@@ -31,13 +29,12 @@ public class TodayMealViewFragment extends Fragment{
 
     static final String BLACK = "#000000";
 
-    SwipeRefreshLayout todayRefreshLayout;
     TextView todayDateTitle;
     ImageView breakfastLamp, lunchLamp, dinnerLamp, snackLamp;
     TextView todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent;
     TextView titleBreakfast, titleLunch, titleDinner, titleSnack;
 
-    DateGenerator dateGenerator = new DateGenerator();
+    DateCalculator dateCalculator = new DateCalculator();
 
     @Nullable
     @Override
@@ -51,7 +48,7 @@ public class TodayMealViewFragment extends Fragment{
 
         //현재 날짜를 표시함
         todayDateTitle = getActivity().findViewById(R.id.todayDateTitle);
-        todayDateTitle.setText(dateGenerator.dateTitleProvider(dateGenerator.getToday()));
+//        todayDateTitle.setText(dateCalculator.dateTitleProvider(dateCalculator.getToday()));
 
         breakfastLamp = getActivity().findViewById(R.id.breakfastLamp);
         lunchLamp = getActivity().findViewById(R.id.lunchLamp);
@@ -73,12 +70,11 @@ public class TodayMealViewFragment extends Fragment{
 
         ApiCommunicator apiCommunicator = new ApiCommunicator(1, todayBreakfastMenuContent, todayLunchMenuContent, todayDinnerMenuContent, todaySnackMenuContent, getView(), getContext());
         apiCommunicator.initCommunicate();
-
     }
 
     private void lampColorChanger() {
         // 시간에 따라 급식 정보글과 램프의 색상을 변경함
-        switch (dateGenerator.lampSelector()) {
+        switch (dateCalculator.lampSelector()) {
             case 0 :
                 // 아침시간
                 breakfastLamp.setImageResource(R.drawable.ic_lamp_on);

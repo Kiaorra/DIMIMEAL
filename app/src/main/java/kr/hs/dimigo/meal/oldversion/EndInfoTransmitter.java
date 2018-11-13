@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.utils;
+package kr.hs.dimigo.meal.oldversion;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
