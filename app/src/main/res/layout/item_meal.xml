@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="104dp"
-    android:padding="16dp"
-    tools:layout_editor_absoluteY="81dp">
+    android:padding="16dp">
 
     <ImageView
-        android:id="@+id/lamp"
+        android:id="@+id/imageView_lamp_itemMeal"
         android:layout_width="12dp"
         android:layout_height="12dp"
         android:src="@drawable/ic_lamp_off"
@@ -18,28 +15,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/textView_title_itemMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textColor="@color/colorDisabled"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/lamp"
-        app:layout_constraintStart_toEndOf="@+id/lamp"
-        app:layout_constraintTop_toTopOf="@+id/lamp"
-        tools:text="아침"/>
+        app:layout_constraintBottom_toBottomOf="@+id/imageView_lamp_itemMeal"
+        app:layout_constraintStart_toEndOf="@+id/imageView_lamp_itemMeal"
+        app:layout_constraintTop_toTopOf="@+id/imageView_lamp_itemMeal"
+        tools:text="아침" />
 
     <TextView
-        android:id="@+id/mealContent"
-        android:layout_width="0dp"
+        android:id="@+id/textView_content_itemMeal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:lineSpacingMultiplier="1.8"
         android:textColor="@color/colorDisabled"
         android:textSize="12sp"
+        app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/title"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="@+id/textView_title_itemMeal"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title_itemMeal"
         tools:text="도톰떡갈비 | 쌀밥 | 하이라이스 | 호박고추장찌개 | 어묵야채볶음 | 석박지 | 허니오즈씨리얼 | 우유" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

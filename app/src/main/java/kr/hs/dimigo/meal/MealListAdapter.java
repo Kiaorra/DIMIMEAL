@@ -1,8 +1,8 @@
 package kr.hs.dimigo.meal;
 
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +27,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
     @NonNull
     @Override
     public MealListAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_meal, parent, false);
         return new MealListAdapter.MyViewHolder(view);
     }
 
@@ -48,9 +48,9 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            lamp = itemView.findViewById(R.id.lamp);
-            title = itemView.findViewById(R.id.title);
-            content = itemView.findViewById(R.id.mealContent);
+//            lamp = itemView.findViewById(R.id.lamp);
+//            title = itemView.findViewById(R.id.title);
+//            content = itemView.findViewById(R.id.mealContent);
         }
     }
 

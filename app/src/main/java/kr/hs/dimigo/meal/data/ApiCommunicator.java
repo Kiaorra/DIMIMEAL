@@ -1,6 +1,8 @@
 package kr.hs.dimigo.meal.data;
 
-import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,13 +34,19 @@ public class ApiCommunicator {
         call.enqueue(new Callback<Meal>() {
             @Override
             public void onResponse(Call<Meal> call, Response<Meal> response) {
-                listAdd(response);
 
-                adapter = new MealListAdapter(meals, isToday);
+                Log.d("ApiCommunication", "HTTP CODE: " + response.code());
 
-                recyclerView.setAdapter(adapter);
+                if (response.isSuccessful()) {
 
-                adapter.notifyDataSetChanged();
+                    listAdd(response);
+
+                    adapter = new MealListAdapter(meals, isToday);
+
+                    recyclerView.setAdapter(adapter);
+
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
