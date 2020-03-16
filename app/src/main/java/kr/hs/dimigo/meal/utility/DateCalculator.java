@@ -1,4 +1,4 @@
-package kr.hs.dimigo.meal.data;
+package kr.hs.dimigo.meal.utility;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

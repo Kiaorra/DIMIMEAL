@@ -7,15 +7,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 
 import kr.hs.dimigo.meal.databinding.ActivityMainBinding;
-
+import kr.hs.dimigo.meal.fragment.MealListFragment;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding mBinding;
+
+    private Fragment[] mFragments = new Fragment[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +33,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupFunctions() {
-        //
         setupToolbar();
 
         // 탭 레이아웃을 초기화 시키는 과정을 포함한 함수이다.
         setupTabLayout();
 
         // 뷰페이저와 탭을 초기화하고, 상호작용하도록 하는 함수이다.
-//        setupViewPager();
+        setupViewPager();
     }
 
     private void setupToolbar() {
@@ -50,10 +53,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupViewPager() {
-        mBinding.viewPagerActMain.setOffscreenPageLimit(2);
 
-//        TabPagerAdapter tabPagerAdapter = new TabPagerAdapter(getSupportFragmentManager(), mBinding.tabLayoutActMain.getTabCount());
-//        mBinding.viewPagerActMain.setAdapter(tabPagerAdapter);
+        for (int i = 0; i < 3; i++) {
+            mFragments[i] = new MealListFragment(this);
+        }
+
+        mBinding.viewPagerActMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mFragments));
 
         mBinding.viewPagerActMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mBinding.tabLayoutActMain));
 
@@ -74,5 +79,27 @@ public class MainActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
+
+    static class ViewPagerAdapter extends FragmentPagerAdapter {
+
+        private Fragment[] fragments;
+
+        private ViewPagerAdapter(@NonNull FragmentManager fm, int behavior, Fragment[] fragments) {
+            super(fm, behavior);
+
+            this.fragments = fragments;
+        }
+
+        @NonNull
+        @Override
+        public Fragment getItem(int position) {
+            return fragments[position];
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.length;
+        }
     }
 }

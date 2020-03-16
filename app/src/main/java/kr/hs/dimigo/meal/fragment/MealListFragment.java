@@ -11,13 +11,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import kr.hs.dimigo.meal.data.ApiCommunicator;
-import kr.hs.dimigo.meal.data.DateCalculator;
 import kr.hs.dimigo.meal.databinding.FragmentMealListBinding;
+import kr.hs.dimigo.meal.viewmodel.MealListFragmentViewModel;
 
 public class MealListFragment extends Fragment {
 
     private FragmentMealListBinding mBinding;
+
+    private MealListFragmentViewModel mViewModel;
 
     private Context mContext;
 

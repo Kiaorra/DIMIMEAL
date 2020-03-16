@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import kr.hs.dimigo.meal.data.DateCalculator;
+import kr.hs.dimigo.meal.utility.DateCalculator;
 
 public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyViewHolder> {
 
