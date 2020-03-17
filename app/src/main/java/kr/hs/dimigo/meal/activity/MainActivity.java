@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.viewPagerActMain.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mBinding.tabLayoutActMain));
 
+        mBinding.viewPagerActMain.setOffscreenPageLimit(2);
+
         mBinding.viewPagerActMain.setCurrentItem(1);
 
         // 뷰페이저와 탭이 상호작용 하도록 하는 리스너이다. 특정 탭을 클릭 하였을 시에 같은 포지션에 위치한 뷰를 불러오게 된다.

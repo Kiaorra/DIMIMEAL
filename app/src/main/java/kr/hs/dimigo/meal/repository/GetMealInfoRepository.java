@@ -13,22 +13,22 @@ public class GetMealInfoRepository extends BaseRepository {
 
     private static final String TAG = "GetMealInfoRepository";
 
-    private MutableLiveData<GetMealInfoResponse> mutableMealInfoData;
+    private MutableLiveData<GetMealInfoResponse> mutableMealInfoData = new MutableLiveData<>();
 
     public MutableLiveData<GetMealInfoResponse> getMutableMealInfoData(String date) {
         apiService.getMealContent(date).enqueue(new Callback<GetMealInfoResponse>() {
             @Override
             public void onResponse(Call<GetMealInfoResponse> call, Response<GetMealInfoResponse> response) {
                 Log.d(TAG, "HTTP status: " + response.code());
-                if (response.isSuccessful()) mutableMealInfoData.setValue(response.body());
+                mutableMealInfoData.setValue(response.body());
             }
 
             @Override
             public void onFailure(Call<GetMealInfoResponse> call, Throwable t) {
                 Log.e(TAG, "onFailure" + t.getMessage());
-                mutableMealInfoData.setValue(null);
             }
         });
+
         return mutableMealInfoData;
     }
 }

@@ -1,5 +1,6 @@
 package kr.hs.dimigo.meal.viewmodel;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -10,12 +11,16 @@ public class MealListFragmentViewModel extends ViewModel {
 
     private GetMealInfoRepository mGetMealInfoRepository;
 
-    private MutableLiveData<GetMealInfoResponse> mutableMealInfoData;
+    private MutableLiveData<GetMealInfoResponse> mealInfoData;
+
+    public LiveData<GetMealInfoResponse> getMealInfoData() {
+        return mealInfoData;
+    }
 
     public void loadMealInfoData(String date) {
         if (mGetMealInfoRepository == null)
             mGetMealInfoRepository = new GetMealInfoRepository();
 
-        mutableMealInfoData = mGetMealInfoRepository.getMutableMealInfoData(date);
+        mealInfoData = mGetMealInfoRepository.getMutableMealInfoData(date);
     }
 }
