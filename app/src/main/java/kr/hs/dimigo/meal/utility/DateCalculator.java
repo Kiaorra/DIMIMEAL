@@ -13,7 +13,8 @@ public class DateCalculator {
 
     private static Calendar calendar = Calendar.getInstance();
 
-    public DateCalculator() { }
+    public DateCalculator() {
+    }
 
     // 요청한 메소드를 포함한 클래스에 따라 다른 값을 리턴하는 메소드이다.
     public static String getDate(int position) {
@@ -73,13 +74,13 @@ public class DateCalculator {
 
         result = Integer.parseInt(dateFormat.format(date));
 
-        if(result <= 815) {
+        if (result <= 815) {
             return 0;
-        } else if(result >=816 && result <= 1340) {
+        } else if (result <= 1340) {
             return 1;
-        } else if(result >=1341 && result <= 1920) {
+        } else if (result <= 1920) {
             return 2;
-        } else if(result >= 1921 && result <= 2140) {
+        } else if (result <= 2140) {
             return 3;
         } else {
             return 0;

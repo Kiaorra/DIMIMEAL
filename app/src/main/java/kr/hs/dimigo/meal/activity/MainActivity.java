@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupViewPager() {
 
         for (int i = 0; i < 3; i++) {
-            mFragments[i] = new MealListFragment(this);
+            mFragments[i] = new MealListFragment(this, i);
         }
 
         mBinding.viewPagerActMain.setAdapter(new ViewPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mFragments));

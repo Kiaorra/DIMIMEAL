@@ -1,9 +1,8 @@
 package kr.hs.dimigo.meal.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,18 +10,18 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.List;
-
+import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.databinding.FragmentMealListBinding;
 import kr.hs.dimigo.meal.databinding.ItemMealBinding;
 import kr.hs.dimigo.meal.model.GetMealInfoResponse;
+import kr.hs.dimigo.meal.utility.DimiMealUtils;
 import kr.hs.dimigo.meal.viewmodel.MealListFragmentViewModel;
 
 public class MealListFragment extends Fragment {
@@ -33,8 +32,16 @@ public class MealListFragment extends Fragment {
 
     private Context mContext;
 
-    public MealListFragment(Context context) {
+    private int mDateType;
+
+    private String mDate;
+
+    private RecyclerViewAdapter mRecyclerViewAdapter;
+
+    public MealListFragment(Context context, int dateType) {
         mContext = context;
+
+        mDateType = dateType;
     }
 
     @Override
@@ -56,14 +63,21 @@ public class MealListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mViewModel.loadMealInfoData("20190413");
+        mDate = DimiMealUtils.getDate(mDateType);
+
+        setupRecyclerView();
+
+        setupNetwork();
+    }
+
+    private void setupNetwork() {
+        mViewModel.loadMealInfoData(mDate);
         mViewModel.getMealInfoData().observe(getViewLifecycleOwner(), new Observer<GetMealInfoResponse>() {
             @Override
             public void onChanged(GetMealInfoResponse getMealInfoResponse) {
+                mRecyclerViewAdapter.setMealInfoResponse(getMealInfoResponse);
             }
         });
-
-        setupRecyclerView();
     }
 
     private void setupRecyclerView() {
@@ -71,10 +85,25 @@ public class MealListFragment extends Fragment {
 
         mBinding.recyclerViewFragMeals.setHasFixedSize(true);
 
-        mBinding.recyclerViewFragMeals.setAdapter(new RecyclerViewAdapter());
+        mRecyclerViewAdapter = new RecyclerViewAdapter(mDateType);
+
+        mBinding.recyclerViewFragMeals.setAdapter(mRecyclerViewAdapter);
     }
 
     private static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ItemMealViewHolder> {
+
+        private int mDateType;
+
+        private GetMealInfoResponse mealInfoResponse;
+
+        public void setMealInfoResponse(GetMealInfoResponse getMealInfoResponse) {
+            mealInfoResponse = getMealInfoResponse;
+            notifyDataSetChanged();
+        }
+
+        public RecyclerViewAdapter(int dateType) {
+            mDateType = dateType;
+        }
 
         @NonNull
         @Override
@@ -84,7 +113,44 @@ public class MealListFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ItemMealViewHolder holder, int position) {
+            String content = null;
 
+            if (mDateType == DimiMealUtils.DATE_TODAY && DimiMealUtils.getCurrentTime(position)) {
+                holder.mItemMealBinding.textViewTitleItemMeal.setTextColor(Color.parseColor("#000000"));
+                holder.mItemMealBinding.textViewContentItemMeal.setTextColor(Color.parseColor("#000000"));
+                holder.mItemMealBinding.imageViewLampItemMeal.setImageResource(R.drawable.ic_lamp_on);
+            } else {
+                holder.mItemMealBinding.textViewTitleItemMeal.setTextColor(Color.parseColor("#929292"));
+                holder.mItemMealBinding.textViewContentItemMeal.setTextColor(Color.parseColor("#929292"));
+                holder.mItemMealBinding.imageViewLampItemMeal.setImageResource(R.drawable.ic_lamp_off);
+            }
+
+            try {
+                switch (position) {
+                    case 0:
+                        holder.mItemMealBinding.textViewTitleItemMeal.setText(R.string.title_breakfast);
+                        content = DimiMealUtils.isEmpty(mealInfoResponse.getBreakfast());
+                        break;
+                    case 1:
+                        holder.mItemMealBinding.textViewTitleItemMeal.setText(R.string.title_lunch);
+                        content = DimiMealUtils.isEmpty(mealInfoResponse.getLunch());
+                        break;
+                    case 2:
+                        holder.mItemMealBinding.textViewTitleItemMeal.setText(R.string.title_dinner);
+                        content = DimiMealUtils.isEmpty(mealInfoResponse.getDinner());
+                        break;
+                    case 3:
+                        holder.mItemMealBinding.textViewTitleItemMeal.setText(R.string.title_snack);
+                        content = DimiMealUtils.isEmpty(mealInfoResponse.getSnack());
+                        break;
+                    default:
+                        break;
+                }
+            } catch (NullPointerException ex) {
+                content = "급식정보가 없습니다.";
+            } finally {
+                holder.mItemMealBinding.textViewContentItemMeal.setText(content);
+            }
         }
 
         @Override

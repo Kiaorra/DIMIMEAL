@@ -37,6 +37,7 @@
         android:textSize="12sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView_title_itemMeal"
         app:layout_constraintTop_toBottomOf="@+id/textView_title_itemMeal"
         tools:text="도톰떡갈비 | 쌀밥 | 하이라이스 | 호박고추장찌개 | 어묵야채볶음 | 석박지 | 허니오즈씨리얼 | 우유" />
