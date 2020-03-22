@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#E8E8E8"
+        android:fontFamily="@font/nanumsquareround_regular"
         android:paddingHorizontal="16dp"
         android:paddingVertical="16dp"
         android:textColor="@android:color/black"

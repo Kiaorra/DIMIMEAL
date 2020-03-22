@@ -3,19 +3,25 @@ package kr.hs.dimigo.meal.fragment;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 import kr.hs.dimigo.meal.R;
 import kr.hs.dimigo.meal.databinding.FragmentMealListBinding;
@@ -65,7 +71,9 @@ public class MealListFragment extends Fragment {
 
         mDate = DimiMealUtils.getDate(mDateType);
 
-        setupRecyclerView();
+        setupDate(mBinding.textViewDateFragMeals, mDate);
+
+        setupRecyclerView(mBinding.recyclerViewFragMeals);
 
         setupNetwork();
     }
@@ -80,14 +88,33 @@ public class MealListFragment extends Fragment {
         });
     }
 
-    private void setupRecyclerView() {
-        mBinding.recyclerViewFragMeals.setLayoutManager(new LinearLayoutManager(mContext));
+    private void setupDate(TextView textView, String inputDate) {
+        try {
+            Date date = new SimpleDateFormat("yyyyMMdd", Locale.KOREA).parse(inputDate);
 
-        mBinding.recyclerViewFragMeals.setHasFixedSize(true);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+
+            String resultDate = new SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREA).format(date) + " " + DimiMealUtils.weekNumToString(calendar.get(Calendar.DAY_OF_WEEK));
+
+            textView.setText(resultDate);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+
+            textView.setVisibility(View.GONE);
+        }
+    }
+
+
+    private void setupRecyclerView(RecyclerView recyclerView) {
+        recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
+
+        recyclerView.setHasFixedSize(true);
 
         mRecyclerViewAdapter = new RecyclerViewAdapter(mDateType);
 
-        mBinding.recyclerViewFragMeals.setAdapter(mRecyclerViewAdapter);
+        recyclerView.setAdapter(mRecyclerViewAdapter);
     }
 
     private static class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ItemMealViewHolder> {
