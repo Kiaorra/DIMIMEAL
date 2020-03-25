@@ -1,7 +1,5 @@
 package kr.hs.dimigo.meal.utility;
 
-import android.util.Log;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,6 +10,8 @@ public class DimiMealUtils {
     public static final int DATE_YESTERDAY = 0;
     public static final int DATE_TODAY = 1;
     public static final int DATE_TOMORROW = 2;
+
+    private static final String[] DAY_OF_WEEKS = {"일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"};
 
     public static String isEmpty(String str) {
         if (str.isEmpty() || str.replaceAll("\\s", "").length() == 0) {
@@ -43,8 +43,6 @@ public class DimiMealUtils {
     public static boolean getCurrentTime(int position) {
         int time = Integer.parseInt(new SimpleDateFormat("kkmm", Locale.KOREA).format(new Date()));
 
-        Log.d("ABC", String.valueOf(time));
-
         if (position == 0 && time <= 815) return true;
         else if (position == 1 && time > 815 && time <= 1340) return true;
         else if (position == 2 && time > 1340 && time <= 1920) return true;
@@ -53,23 +51,6 @@ public class DimiMealUtils {
     }
 
     public static String weekNumToString(int number) {
-        switch (number) {
-            case 1:
-                return "일요일";
-            case 2:
-                return "월요일";
-            case 3:
-                return "화요일";
-            case 4:
-                return "수요일";
-            case 5:
-                return "목요일";
-            case 6:
-                return "금요일";
-            case 7:
-                return "토요일";
-            default:
-                return null;
-        }
+        return DAY_OF_WEEKS[number - 1];
     }
 }

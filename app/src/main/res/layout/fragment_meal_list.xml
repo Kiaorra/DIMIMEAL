@@ -15,7 +15,7 @@
         android:paddingVertical="16dp"
         android:textColor="@android:color/black"
         android:textSize="14dp"
-        tools:text="@string/sample_date_title" />
+        tools:text="@string/sample_date" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_fragMeals"
